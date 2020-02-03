@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -21,12 +21,41 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const useStyles = makeStyles({
   list: {
-    width: 250,
+    width: 270,
+  },
+  loginText: {
+    marginLeft: '5px'
   },
   link: {
 	  textDecoration: 'none',
 	  color: '#202020',
-  }
+  },
+  footer: {
+    position: 'absolute',
+    display: 'block',
+    width: '100%',
+    bottom: '10px',
+  },
+  externalLinks: {
+    display: 'block',
+    marginLeft: 'auto',
+    textAlign: 'center',
+    paddingTop: '20px'
+  },
+  externalLinksBtn: {
+    textDecoration: 'none',
+    color: '#202020',
+    marginLeft: '10px',
+    marginRight: '10px'
+  },
+  unreachable: {
+    textAlign: 'center',
+    marginTop: '5px'
+  },
+  unreachableBtn: {
+    textDecoration: 'none',
+    color: '#202020',
+  },
 });
 
 const NavBar = () => {
@@ -42,27 +71,30 @@ const NavBar = () => {
   const Menu = () => (
     <div className={classes.list} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
       <List>
-		  <Link to="/packages" className={classes.link}>
+		  <NavLink to="/packages" className={classes.link} activeClassName="activeLink">
             <ListItem button key={0}>
-              <ListItemIcon><FontAwesomeIcon icon="cube" size="1x"/></ListItemIcon>
+              <ListItemIcon className="iconNavbar"><FontAwesomeIcon icon="cube" size="1x"/></ListItemIcon>
               <ListItemText primary="Packages" />
             </ListItem>
-        </Link>
+        </NavLink>
 
-        <Link to="/assets"  className={classes.link}>
+        <NavLink to="/assets" className={classes.link} activeClassName="activeLink">
           <ListItem button key={1}>
-            <ListItemIcon><FontAwesomeIcon icon="image" size="1x"/></ListItemIcon>
+            <ListItemIcon className="iconNavbar"><FontAwesomeIcon icon="image" size="1x"/></ListItemIcon>
             <ListItemText primary="Assets" />
           </ListItem>
-        </Link>
+        </NavLink>
       </List>
 
-      <Divider />
 
-      <FontAwesomeIcon icon={['fab', 'discord']} size="2x"/>
-      <FontAwesomeIcon icon={['fab', 'github']} size="2x"/>
-      <br />
-      Unreachable Studio
+      <div className={classes.footer}>
+        <Divider />
+        <div className={classes.externalLinks}>
+          <a href="https://discordapp.com/invite/C8qSa2K" className={classes.externalLinksBtn}><FontAwesomeIcon icon={['fab', 'discord']} size="2x"/></a>
+          <a href="https://github.com/unreachable-studio/onset.tools" className={classes.externalLinksBtn}><FontAwesomeIcon icon={['fab', 'github']} size="2x"/></a>
+        </div>
+        <div className={classes.unreachable}><a href="https://unreachable.studio/" className={classes.unreachableBtn}>Unreachable Studio</a></div>
+      </div>
     </div>
   );
 
@@ -71,7 +103,7 @@ const NavBar = () => {
       <Toolbar>
         <IconButton onClick={toggleDrawer(true)} edge="start" color="inherit" aria-label="menu"><MenuIcon /></IconButton>
         <Typography variant="h6">Onset.tools</Typography>
-        <Button style={{marginLeft: 'auto'}} color="inherit" aria-label="login"><FontAwesomeIcon icon={['fab', 'steam']} /> Login</Button>
+        <Button style={{marginLeft: 'auto'}} color="inherit" aria-label="login"><FontAwesomeIcon icon={['fab', 'steam']} /> <span className={classes.loginText}>Login</span></Button>
       </Toolbar>
     </AppBar>
 
