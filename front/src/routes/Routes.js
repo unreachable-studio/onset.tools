@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Redirect, Route } from "react-router-dom";
 
+import cookie from 'react-cookies';
 import Packages from '../components/Packages/Packages';
 import PackageView from "../components/Packages/PackageView";
 
