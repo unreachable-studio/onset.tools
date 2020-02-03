@@ -62,7 +62,7 @@ const PackageItem = ({ package: { id, name, date, author, views, downloads, shor
 		  <div className={classes.download}><FontAwesomeIcon icon="download" /> {downloads}</div>
 
 		  <Link to={"/package/" + id} className={classes.view}>
-			<Button  aria-label="view">View</Button>
+			<Button aria-label="view">View</Button>
 		  </Link>
 		</CardActions>
 
