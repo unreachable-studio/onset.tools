@@ -1,0 +1,17 @@
+{
+  "name": "onset.tools",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/unreachable-studio/onset.tools",
+  "author": "Unreachable Studio",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "nodemon --legacy-watch -e js,mjs,json -- -r esm src/index.js",
+    "seed": "node -r esm scripts/seed.js"
+  },
+  "dependencies": {
+    "esm": "^3.2.25",
+    "express": "^4.17.1"
+  }
+}
