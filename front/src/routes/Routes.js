@@ -6,7 +6,7 @@ import Packages from '../components/Packages/Packages';
 const Router = () => (
     <Switch>
 		<Route exact path="/packages" component={Packages} />
-        <Redirect to="/" />
+        <Redirect to="/packages" />
     </Switch>
 )
 

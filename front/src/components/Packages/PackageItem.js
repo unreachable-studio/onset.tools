@@ -1,12 +1,7 @@
 import React from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
-
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import {
   Card,
@@ -14,7 +9,6 @@ import {
   CardContent,
   CardActions,
   Button,
-  IconButton,
   Typography,
   Grid,
 } from '@material-ui/core/';
@@ -41,7 +35,6 @@ const useStyles = makeStyles(theme => ({
 
 const PackageItem = ({ package: { id, name, date, author, views, downloads, short_description } }) => {
 	const classes = useStyles();
-	const history = useHistory();
 
 	return (
 	<Grid item>
@@ -49,7 +42,6 @@ const PackageItem = ({ package: { id, name, date, author, views, downloads, shor
 
         <CardHeader
           avatar={<FontAwesomeIcon icon="cube" size="2x" />}
-          action={<IconButton aria-label="settings"><MoreVertIcon /></IconButton>}
           title={name}
           subheader={date + ' • ' + author}
         />
