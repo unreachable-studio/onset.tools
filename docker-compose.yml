@@ -9,7 +9,7 @@ services:
       - './api/package.json:/usr/src/package.json'
       - '/usr/src/node_modules'
     ports:
-      - '4001:4000'
+      - '4000:4000'
     networks:
       - default
     labels:
@@ -23,7 +23,7 @@ services:
       - './front/package.json:/usr/src/package.json'
       - '/usr/src/node_modules'
     ports:
-      - '3001:3000'
+      - '3000:3000'
     networks:
       - default
     labels:
@@ -44,7 +44,7 @@ services:
   mongo-express:
     image: mongo-express
     ports:
-      - '8083:8081'
+      - '8082:8081'
     networks:
       - default
     environment:

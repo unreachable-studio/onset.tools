@@ -27,8 +27,8 @@ app.get('/', function (req, res) {
 })
 
 passport.use(new SteamStrategy({
-  returnURL: 'http://unreachable.fr:4001/auth/steam/return',
-  realm: 'http://unreachable.fr:4001/',
+  returnURL: 'http://unreachable.fr:4000/auth/steam/return',
+  realm: 'http://unreachable.fr:4000/',
   apiKey: '5461922463F2C0C67244481E77B2C103'
 },
   function(identifier, profile, done) {
@@ -51,7 +51,7 @@ app.get('/auth/steam/return',
   function(req, res) {
 	const token = jwt.sign({ user: req.user }, /*process.env.SECRET_KEY*/"onset", { expiresIn: '2h' });
 	  res.cookie('token', token);
-	  res.redirect('http://unreachable.fr:3001/');
+	  res.redirect('http://unreachable.fr:3000/');
   });
 
 app.get('/logout', function(req, res){
