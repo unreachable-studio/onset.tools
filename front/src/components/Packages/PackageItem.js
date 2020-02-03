@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -27,7 +27,16 @@ const useStyles = makeStyles(theme => ({
   },
   view: {
     marginLeft: 'auto',
+    textDecoration: 'none',
   },
+  eye: {
+    display: 'inline-block',
+    marginLeft: '5px',
+    marginRight: '10px',
+  },
+  download: {
+    display: 'inline-block',
+  }
 }));
 
 const PackageItem = ({ package: { id, name, date, author, views, downloads, short_description } }) => {
@@ -50,9 +59,12 @@ const PackageItem = ({ package: { id, name, date, author, views, downloads, shor
         </CardContent>
 
         <CardActions disableSpacing>
-		  <FontAwesomeIcon icon="eye" /> {views}
-		  <FontAwesomeIcon icon="download" /> {downloads}
-          <Button className={classes.view} aria-label="view" onClick={() => history.push('/packages/' + id) }>View</Button>
+		      <div className={classes.eye}><FontAwesomeIcon icon="eye" /> {views}</div>
+          <div className={classes.download}><FontAwesomeIcon icon="download" /> {downloads}</div>
+		      
+          <Link to={"/package/" + id} className={classes.view}>
+            <Button  aria-label="view">View</Button>
+          </Link>
         </CardActions>
 
       </Card>

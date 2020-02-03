@@ -23,6 +23,10 @@ const useStyles = makeStyles({
   list: {
     width: 250,
   },
+  link: {
+	  textDecoration: 'none',
+	  color: '#202020',
+  }
 });
 
 const NavBar = () => {
@@ -38,17 +42,19 @@ const NavBar = () => {
   const Menu = () => (
     <div className={classes.list} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
       <List>
-		<Link to="/packages">
-        <ListItem button key={0}>
-          <ListItemIcon><FontAwesomeIcon icon="cube" size="1x"/></ListItemIcon>
-          <ListItemText primary="Packages" />
-        </ListItem>
-		</Link>
+		  <Link to="/packages" className={classes.link}>
+            <ListItem button key={0}>
+              <ListItemIcon><FontAwesomeIcon icon="cube" size="1x"/></ListItemIcon>
+              <ListItemText primary="Packages" />
+            </ListItem>
+        </Link>
 
-        <ListItem button key={1}>
-          <ListItemIcon><FontAwesomeIcon icon="image" size="1x"/></ListItemIcon>
-          <ListItemText primary="Assets" />
-        </ListItem>
+        <Link to="/assets"  className={classes.link}>
+          <ListItem button key={1}>
+            <ListItemIcon><FontAwesomeIcon icon="image" size="1x"/></ListItemIcon>
+            <ListItemText primary="Assets" />
+          </ListItem>
+        </Link>
       </List>
 
       <Divider />
