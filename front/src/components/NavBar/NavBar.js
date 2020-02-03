@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -37,10 +38,12 @@ const NavBar = () => {
   const Menu = () => (
     <div className={classes.list} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
       <List>
+		<Link to="/packages">
         <ListItem button key={0}>
           <ListItemIcon><FontAwesomeIcon icon="cube" size="1x"/></ListItemIcon>
           <ListItemText primary="Packages" />
         </ListItem>
+		</Link>
 
         <ListItem button key={1}>
           <ListItemIcon><FontAwesomeIcon icon="image" size="1x"/></ListItemIcon>
