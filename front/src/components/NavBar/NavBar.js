@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, useHistory } from "react-router-dom";
 
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -18,6 +18,8 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { getCurrentProfile } from '../../Helpers.js';
 
 const useStyles = makeStyles({
   list: {
@@ -61,19 +63,7 @@ const useStyles = makeStyles({
 const NavBar = () => {
   const classes = useStyles();
   const [state, setState] = useState(false);
-
-  useEffect(() => {
-	window.addEventListener('message', event => {
-	  if (event.origin !== process.env.REACT_APP_API_URL) return;
-
-	  const { token, ok } = event.data;
-
-	  if (ok) {
-		localStorage.setItem('authToken', token);
-		console.log(token);
-	  }
-	});
-  }, [])
+  const history = useHistory();
 
   const toggleDrawer = open => event => {
 	if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift'))
@@ -111,16 +101,18 @@ const NavBar = () => {
 	</div>
   );
 
-  const handleLogin = () => {
-	window.location.href = process.env.REACT_APP_API_URL + '/auth/steam';
-  }
+  const handleLogin = () =>	window.location.href = process.env.REACT_APP_API_URL + '/auth/steam';
 
   return <>
 	<AppBar position="static">
 	  <Toolbar>
 		<IconButton onClick={toggleDrawer(true)} edge="start" color="inherit" aria-label="menu"><MenuIcon /></IconButton>
 		<Typography variant="h6">Onset.tools</Typography>
-		<Button onClick={handleLogin} style={{marginLeft: 'auto'}} color="inherit" aria-label="login"><FontAwesomeIcon icon={['fab', 'steam']} /> <span className={classes.loginText}>Login</span></Button>
+		  { getCurrentProfile() ?
+			  <Button onClick={() => history.push('/logout')} style={{marginLeft: 'auto'}} color="inherit" aria-label="logout"><FontAwesomeIcon icon={['fab', 'steam']} /> <span className={classes.loginText}>Logout</span></Button>
+			 :
+			 <Button onClick={handleLogin} style={{marginLeft: 'auto'}} color="inherit" aria-label="login"><FontAwesomeIcon icon={['fab', 'steam']} /> <span className={classes.loginText}>Login</span></Button>
+		  }
 	  </Toolbar>
 	</AppBar>
 
