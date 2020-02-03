@@ -1,20 +1,21 @@
 import React from 'react';
-import Router from './routes/Routes';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSteam, faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faCube } from '@fortawesome/free-solid-svg-icons';
+import { faCube, faImage } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-library.add(faSteam, faDiscord, faGithub, faCube, faUser);
+import NavBar from './components/NavBar/NavBar';
+import Router from './routes/Routes';
 
-function App() {
-  return (
-	<>
-		<Router />
-	</>
-  );
+library.add(faSteam, faDiscord, faGithub, faCube, faUser, faImage);
+
+const App = () => {
+  return <>
+    <NavBar />
+    <Router />
+  </>
 }
 
 export default App;
