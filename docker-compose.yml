@@ -29,30 +29,30 @@ services:
     labels:
       traefik.enable: false
 
-  db:
-    image: mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: onset
-    volumes:
-      - ./db/data:/data/db
-    networks:
-      - default
-    labels:
-      traefik.enable: false
+# db:
+#   image: mongo
+#   environment:
+#     MONGO_INITDB_ROOT_USERNAME: root
+#     MONGO_INITDB_ROOT_PASSWORD: onset
+#   volumes:
+#     - ./db/data:/data/db
+#   networks:
+#     - default
+#   labels:
+#     traefik.enable: false
 
-  mongo-express:
-    image: mongo-express
-    ports:
-      - '8082:8081'
-    networks:
-      - default
-    environment:
-      ME_CONFIG_MONGODB_SERVER: db
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: onset
-    labels:
-      traefik.enable: false
+# mongo-express:
+#   image: mongo-express
+#   ports:
+#     - '8082:8081'
+#   networks:
+#     - default
+#   environment:
+#     ME_CONFIG_MONGODB_SERVER: db
+#     ME_CONFIG_MONGODB_ADMINUSERNAME: root
+#     ME_CONFIG_MONGODB_ADMINPASSWORD: onset
+#   labels:
+#     traefik.enable: false
 
 networks:
   default:
