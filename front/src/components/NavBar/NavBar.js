@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory, useLocation } from "react-router-dom";
 
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -15,6 +15,7 @@ import {
 	ListItem,
 	ListItemIcon,
 	ListItemText,
+	Breadcrumbs,
 } from '@material-ui/core/';
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -23,8 +24,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getCurrentProfile } from '../../Helpers.js';
 
 const useStyles = makeStyles({
+    appBar: {
+      zIndex: 1400,
+    },
 	list: {
 		width: 270,
+	    marginTop: '75px',
 	},
 	loginText: {
 		marginLeft: '5px'
@@ -71,7 +76,8 @@ const useStyles = makeStyles({
 const NavBar = () => {
 	const classes = useStyles();
 	const [state, setState] = useState(false);
-	const history = useHistory();
+	const history = useHistory()
+	const location = useLocation();
 
 	const toggleDrawer = open => event => {
 		if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift'))
@@ -84,14 +90,14 @@ const NavBar = () => {
 			<List>
 				<NavLink to="/packages" className={classes.link} activeClassName="activeLink">
 					<ListItem button key={0}>
-						<ListItemIcon className="iconNavbar"><FontAwesomeIcon icon="cube" size="1x"/></ListItemIcon>
+						<ListItemIcon className="iconNavbar"><FontAwesomeIcon icon="cube" size="2x"/></ListItemIcon>
 						<ListItemText primary="Packages" />
 					</ListItem>
 				</NavLink>
 
 				<NavLink to="/assets" className={classes.link} activeClassName="activeLink">
 					<ListItem button key={1}>
-						<ListItemIcon className="iconNavbar"><FontAwesomeIcon icon="image" size="1x"/></ListItemIcon>
+						<ListItemIcon className="iconNavbar"><FontAwesomeIcon icon="image" size="2x"/></ListItemIcon>
 						<ListItemText primary="Assets" />
 					</ListItem>
 				</NavLink>
@@ -113,10 +119,24 @@ const NavBar = () => {
 	const handleLogin = () =>	window.location.href = process.env.REACT_APP_API_URL + '/auth/steam';
 
 	return <>
-		<AppBar position="static">
+		<AppBar position="fixed" className={classes.appBar}>
 			<Toolbar>
 				<IconButton onClick={toggleDrawer(true)} edge="start" color="inherit" aria-label="menu"><MenuIcon /></IconButton>
-				<Typography variant="h6">Onset.tools</Typography>
+
+			    <Breadcrumbs aria-label="breadcrumb" style={{textDecoration: 'none', color: '#fff', verticalAlign: 'middle'}}>
+				  <Link color="inherit" to="/" style={{textDecoration: 'none', color: 'white'}}>
+			        <Typography variant="h6">Onset.tools</Typography>
+			      </Link>
+				  <Link
+					color="textPrimary"
+					style={{textDecoration: 'none', color: '#eeeb'}}
+					to={location.pathname}
+					aria-current="page"
+				  >
+					<Typography style={{verticalAlign: 'middle'}}>{location.pathname.substr(1)}</Typography>
+				  </Link>
+				</Breadcrumbs>
+
 				{ getCurrentProfile() ? (
 					<div style={{marginLeft: 'auto', display: 'flex'}}>
 						<h3>{getCurrentProfile().user.displayName}</h3>
@@ -129,7 +149,7 @@ const NavBar = () => {
 		</AppBar>
 
 		<Drawer open={state} onClose={toggleDrawer(false)}>
-			<Menu /> 
+			<Menu />
 		</Drawer>
 	</>
 }

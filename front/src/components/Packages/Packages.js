@@ -15,7 +15,6 @@ const Packages = () => {
 	];
 
 	return <Container>
-		<h3>Packages</h3>
 		<Grid container spacing={2}>
 			{ packages.map((p, index) => <PackageItem key={index} package={p} />) }
 		</Grid>

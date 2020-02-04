@@ -14,6 +14,7 @@ library.add(faSteam, faDiscord, faGithub, faCube, faUser, faImage, faDownload, f
 const App = () => {
   return <>
     <NavBar />
+	<section name="offset" style={{paddingTop: '80px'}}></section>
     <Router />
   </>
 }
