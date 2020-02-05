@@ -123,7 +123,8 @@ const NavBar = (props) => {
 	const handleLogin = () =>	window.location.href = process.env.REACT_APP_API_URL + '/auth/steam';
 
     const { breakpoints, currentBreakpoint } = props;
-console.log(currentBreakpoint);
+	const desktop = breakpoints[currentBreakpoint] >= breakpoints.desktop;
+
 	return <>
 		<AppBar position="fixed" className={classes.appBar}>
 			<Toolbar>
@@ -144,16 +145,20 @@ console.log(currentBreakpoint);
 				</Breadcrumbs>
 
 				{ getCurrentProfile() ? (
-					<div style={{marginLeft: 'auto', display: 'flex'}}>
-						<h3>{getCurrentProfile().user.displayName}</h3>
-						<Avatar alt={getCurrentProfile().user.displayName} src={getCurrentProfile().user.photos[1].value} style={{marginTop: '7px', marginLeft: '10px'}}/>
-					</div>
+					<Link to={'/user/' + getCurrentProfile().id} style={{marginLeft: 'auto', textDecoration: 'none', color: '#eee'}} color="inherit" aria-label="login">
+						<div style={{marginLeft: 'auto', display: 'flex'}}>
+							{desktop ? <h3>{getCurrentProfile().displayName}</h3> : null}
+							<Avatar alt={getCurrentProfile().displayName} src={getCurrentProfile().photos[1].value} style={{marginTop: (desktop ? '7px' : '0px'), marginLeft: (desktop ? '10px' : '0px')}}/>
+						</div>
+					</Link>
 				) : (
-				  <Button onClick={handleLogin} style={{marginLeft: 'auto'}} color="inherit" aria-label="login"><FontAwesomeIcon icon={['fab', 'steam']} />
-					<span className={classes.loginText}>
-					  {breakpoints[currentBreakpoint] >= breakpoints.desktop ? "Login" : null}
-					</span>
-				  </Button>
+					<a href={process.env.REACT_APP_API_URL + '/auth/steam'} style={{marginLeft: 'auto', textDecoration: 'none', color: '#eee'}} color="inherit" aria-label="login" rel="noopener noreferrer">
+						{desktop ? (
+						<Button style={{marginLeft: 'auto'}} color="inherit" aria-label="login"><FontAwesomeIcon icon={['fab', 'steam']} /><span className={classes.loginText}>Login</span></Button>
+					) : (
+						<IconButton onClick={handleLogin} style={{marginLeft: 'auto'}} color="inherit" aria-label="login"><FontAwesomeIcon icon={['fab', 'steam']} /></IconButton>
+					)}
+						</a>
 				)}
 			</Toolbar>
 		</AppBar>
