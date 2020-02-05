@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, NavLink, useHistory, useLocation } from "react-router-dom";
 
+import { withBreakpoints } from 'react-breakpoints';
+
 import { makeStyles } from '@material-ui/core/styles';
 import {
 	AppBar,
@@ -73,7 +75,7 @@ const useStyles = makeStyles({
 
 });
 
-const NavBar = () => {
+const NavBar = (props) => {
 	const classes = useStyles();
 	const [state, setState] = useState(false);
 	const history = useHistory()
@@ -120,6 +122,8 @@ const NavBar = () => {
 
 	const handleLogin = () =>	window.location.href = process.env.REACT_APP_API_URL + '/auth/steam';
 
+    const { breakpoints, currentBreakpoint } = props;
+console.log(currentBreakpoint);
 	return <>
 		<AppBar position="fixed" className={classes.appBar}>
 			<Toolbar>
@@ -144,9 +148,13 @@ const NavBar = () => {
 						<h3>{getCurrentProfile().user.displayName}</h3>
 						<Avatar alt={getCurrentProfile().user.displayName} src={getCurrentProfile().user.photos[1].value} style={{marginTop: '7px', marginLeft: '10px'}}/>
 					</div>
-				) :
-				<Button onClick={handleLogin} style={{marginLeft: 'auto'}} color="inherit" aria-label="login"><FontAwesomeIcon icon={['fab', 'steam']} /> <span className={classes.loginText}>Login</span></Button>
-				}
+				) : (
+				  <Button onClick={handleLogin} style={{marginLeft: 'auto'}} color="inherit" aria-label="login"><FontAwesomeIcon icon={['fab', 'steam']} />
+					<span className={classes.loginText}>
+					  {breakpoints[currentBreakpoint] >= breakpoints.desktop ? "Login" : null}
+					</span>
+				  </Button>
+				)}
 			</Toolbar>
 		</AppBar>
 
@@ -156,4 +164,4 @@ const NavBar = () => {
 	</>
 }
 
-export default NavBar;
+export default withBreakpoints(NavBar);
