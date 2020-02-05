@@ -140,7 +140,7 @@ const NavBar = (props) => {
 					to={location.pathname}
 					aria-current="page"
 				  >
-					<Typography style={{verticalAlign: 'middle'}}>{location.pathname.substr(1)}</Typography>
+					<Typography style={{verticalAlign: 'middle'}}>{location.pathname.split('/')[1]}</Typography>
 				  </Link>
 				</Breadcrumbs>
 
