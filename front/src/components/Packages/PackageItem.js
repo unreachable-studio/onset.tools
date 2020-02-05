@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { withBreakpoints } from 'react-breakpoints';
+
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Card,
@@ -19,7 +21,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const useStyles = makeStyles(theme => ({
   root: {
-	maxWidth: 345,
+	maxWidth: 445,
   },
   view: {
 	marginLeft: 'auto',
@@ -35,11 +37,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const PackageItem = ({ package: { id, name, date, author, views, downloads, short_description } }) => {
+const PackageItem = ({ package: { id, name, date, author, views, downloads, short_description }, ...props }) => {
   const classes = useStyles();
 
+  const { breakpoints, currentBreakpoint } = props;
+  const mobile = breakpoints[currentBreakpoint] <= breakpoints.mobile;
+
   return (
-	<Grid item>
+	  <Grid item style={mobile ? {width: '100%'} : null}>
 	  <Card className={classes.root}>
 
 		<CardHeader
@@ -71,4 +76,4 @@ const PackageItem = ({ package: { id, name, date, author, views, downloads, shor
   );
 }
 
-export default PackageItem;
+export default withBreakpoints(PackageItem);
