@@ -108,8 +108,14 @@ const NavBar = (props) => {
 
 			<div className={classes.footer}>
 				{ getCurrentProfile() ?
-				  <Button onClick={() => history.push('/logout')} color="inherit" aria-label="logout" className={classes.logout}><FontAwesomeIcon icon="sign-out-alt" style={{marginRight: '5px'}}/>Logout</Button>
-				: null }
+					<a href="/logout" style={{marginLeft: 'auto', textDecoration: 'none', color: 'inherit'}} aria-label="logout" rel="noopener noreferrer">
+						<Button color="inherit" aria-label="logout" className={classes.logout}><FontAwesomeIcon icon="sign-out-alt" style={{marginRight: '5px'}}/>Logout</Button>
+					</a>
+				:
+					<a href={process.env.REACT_APP_API_URL + '/auth/steam'} style={{marginLeft: 'auto', textDecoration: 'none', color: 'inherit'}} aria-label="logout" rel="noopener noreferrer">
+						<Button color="inherit" aria-label="logout" className={classes.logout}><FontAwesomeIcon icon={['fab', 'steam']} style={{marginRight: '5px'}}/>Login</Button>
+					</a>
+				}
 				<Divider />
 				<div className={classes.externalLinks}>
 					<a href="https://discordapp.com/invite/C8qSa2K" className={classes.externalLinksBtn}><FontAwesomeIcon icon={['fab', 'discord']} size="2x"/></a>
