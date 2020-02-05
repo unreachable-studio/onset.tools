@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import { Divider } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import parse from 'url-parse';
 
 const useStyles = makeStyles({
   cardTop: {
@@ -54,11 +55,12 @@ const DisplayAuthors = ({ author: { pseudo, role, logo}}) => {
   );
 }
 
-const PackageViewAuthors = ({ package: { date, authors, views, downloads} }) => { 
+const PackageViewAuthors = ({ package: { date, authors, views, downloads, url } }) => { 
   const classes = useStyles();
 
   // VARIABLE DE TEST
   const latestVersion = { version: "V2.0.0", stability: "Release", downloads: "15", updateDate: "03/02/2020"};
+  const urlObj = parse(url);
 
   return (
 	<>
@@ -79,7 +81,7 @@ const PackageViewAuthors = ({ package: { date, authors, views, downloads} }) => 
 		  </Typography>
 		  <Divider />
 		  <div className={classes.informationCardBlock}>
-			<Typography color="Initial" variant="p"><strong>Source:</strong> <a href="https://github.com/unreachable-studio/onset.tools/" color="primary">https://github.com/unreachable-studio/onset.tools/</a></Typography>
+			  <Typography color="Initial" variant="p"><strong>Source:</strong> <a href={url} color="primary">{urlObj.hostname + urlObj.pathname.substr(0, urlObj.pathname.length - (urlObj.pathname.endsWith('/') ? 1 : 0))}</a></Typography>
 		  </div>
 		  <div className={classes.informationCardBlock}>
 			<Typography color="Initial" variant="p"><strong>Create:</strong> {date}</Typography>
