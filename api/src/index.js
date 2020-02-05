@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const SteamStrategy = require('passport-steam');
 const jwt = require('jsonwebtoken');
+
 const app = express();
 
 passport.serializeUser(function(user, done) {
@@ -27,8 +28,8 @@ app.get('/', function (req, res) {
 })
 
 passport.use(new SteamStrategy({
-  returnURL: 'http://unreachable.fr:4000/auth/steam/return',
-  realm: 'http://unreachable.fr:4000/',
+  returnURL: process.env.API_URL + '/auth/steam/return',
+  realm: process.env.API_URL,
   apiKey: '5461922463F2C0C67244481E77B2C103'
 },
   function(identifier, profile, done) {
@@ -49,9 +50,9 @@ app.get('/auth/steam',
 app.get('/auth/steam/return',
   passport.authenticate('steam', { failureRedirect: '/packages' }), //TODO: change failure url
   function(req, res) {
-	const token = jwt.sign({ user: req.user }, /*process.env.SECRET_KEY*/"onset", { expiresIn: '2h' });
+	const token = jwt.sign({ user: req.user }, process.env.SECRET_KEY, { expiresIn: '2h' });
 	  res.cookie('token', token);
-	  res.redirect('http://unreachable.fr:3000/');
+	  res.redirect(process.env.FRONT_URL);
   });
 
 app.get('/logout', function(req, res){
@@ -61,4 +62,5 @@ app.get('/logout', function(req, res){
 
 app.listen(4000, function () {
   console.log('Example app listening on port 4000!')
+	  console.log(process.env.FRONT_URL);
 })
