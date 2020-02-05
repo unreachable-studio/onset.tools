@@ -24,6 +24,7 @@ services:
       - '/usr/src/node_modules'
     ports:
       - '${FRONT_PORT-3000}:3000'
+      - '${STORYBOOK_PORT-9009}:9009'
     networks:
       - default
     labels:
