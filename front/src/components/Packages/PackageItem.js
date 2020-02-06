@@ -15,7 +15,8 @@ import {
   Typography,
   Grid,
 } from '@material-ui/core/';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+
+//import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

@@ -159,15 +159,15 @@ const PackageViewItem = ({ package: { id, name, downloads, long_description, lik
 const PackageView = (props) => {
 
   // TEMPORAIREMENT INUTILISABLE
-  const { match } = props;
-  let {id} = match.params;
+  //const { match } = props;
+  //let { id } = match.params;
 
   const classes = useStyles();
 
   // VARIABLE DE TEST
 	const packageContent = [{ id: 1, name: "First package",  date: "01/02/2003", url: "https://github.com/unreachable-studio/onset.tools/", authors: [{ id: 42, pseudo: "bapmarty", postCount: 1485, role: "developper", logo: "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/b2/b2adcbd54d30d6c9eb0e87ae451b6ee08390deb7_medium.jpg"}, { id: 12, pseudo: "aguiot--", postCount: 140, role: "sysadmin", logo: "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/b2/b2adcbd54d30d6c9eb0e87ae451b6ee08390deb7_medium.jpg"}], views: 1337, downloads: 256, likes: 12354, short_description: "The veefhfffewnfefewf ef eufew fuew feuw feu. fewh fry first package.", long_description: `# Welcome to StackEdit!
 
-  Hi! I\'m your first Markdown file in **StackEdit**. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the **file explorer** on the left corner of the navigation bar.
+  Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the **file explorer** on the left corner of the navigation bar.
   
   
   # Files

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, NavLink, useHistory, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -79,7 +79,6 @@ const useStyles = makeStyles({
 const NavBar = (props) => {
 	const classes = useStyles();
 	const [state, setState] = useState(false);
-	const history = useHistory()
 	const location = useLocation();
 
 	const toggleDrawer = open => event => {

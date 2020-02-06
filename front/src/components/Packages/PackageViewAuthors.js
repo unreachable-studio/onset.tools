@@ -81,16 +81,16 @@ const PackageViewAuthors = ({ package: { date, authors, views, downloads, url } 
 		  </Typography>
 		  <Divider />
 		  <div className={classes.informationCardBlock}>
-			  <Typography color="Initial" variant="p"><strong>Source:</strong> <a href={url} color="primary">{urlObj.hostname + urlObj.pathname.substr(0, urlObj.pathname.length - (urlObj.pathname.endsWith('/') ? 1 : 0))}</a></Typography>
+		    <strong>Source:</strong> <a href={url} color="primary">{urlObj.hostname + urlObj.pathname.substr(0, urlObj.pathname.length - (urlObj.pathname.endsWith('/') ? 1 : 0))}</a>
 		  </div>
 		  <div className={classes.informationCardBlock}>
-			<Typography color="Initial" variant="p"><strong>Create:</strong> {date}</Typography>
+			<strong>Create:</strong> {date}
 		  </div>
 		  <div className={classes.informationCardBlock}>
-			<Typography color="Initial" variant="p"><strong>Views:</strong> {views}</Typography>
+			<strong>Views:</strong> {views}
 		  </div>
 		  <div className={classes.informationCardBlock}>
-			<Typography color="Initial" variant="p"><strong>Global downloads:</strong> {downloads}</Typography>
+			<strong>Global downloads:</strong> {downloads}
 		  </div>
 		</CardContent>
 	  </Card>
@@ -114,7 +114,7 @@ const PackageViewAuthors = ({ package: { date, authors, views, downloads, url } 
 			  </div>
 			</div>
 			<div className={classes.latestVersionCardRelease}>
-			  <a href=""><FontAwesomeIcon icon="download" /></a>
+			  <a href={url}><FontAwesomeIcon icon="download" /></a>
 			</div>
 		  </div>
 		</CardContent>
