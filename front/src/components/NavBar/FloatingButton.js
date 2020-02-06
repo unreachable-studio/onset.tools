@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -23,12 +24,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const actions = [
-  { name: 'Asset',   icon: <FontAwesomeIcon icon="image" size="1x"/> },
-  { name: 'Package', icon: <FontAwesomeIcon icon="cube"  size="1x"/> },
+  { name: 'Asset',   icon: <FontAwesomeIcon icon="image" size="1x"/>, url: '/asset/new' },
+  { name: 'Package', icon: <FontAwesomeIcon icon="cube"  size="1x"/>, url: '/package/new' },
 ];
 
 const FloatingButton = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [open, setOpen] = useState(false);
 
   const handleClose = () => setOpen(false);
@@ -52,7 +54,7 @@ const FloatingButton = () => {
 			icon={action.icon}
 			tooltipTitle={action.name}
 			tooltipOpen
-			onClick={handleClose}
+			onClick={() => { history.push(action.url); handleClose() }}
 		  />
 		))}
 	  </SpeedDial>
@@ -60,14 +62,5 @@ const FloatingButton = () => {
   );
 
 };
-
-
-//const FloatingButton = () => {
-//  <Link to="/package/new">
-//	<Fab size="medium" color="secondary" aria-label="add" className={classes.addButton}>
-//	  <AddIcon />
-//	</Fab>
-//  </Link>
-//};
 
 export default FloatingButton;
