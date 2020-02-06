@@ -23,6 +23,13 @@ const theme = createMuiTheme({
 	  main: '#ff9800',
 	},
   },
+  overrides: {
+    MuiFab: {
+	  primary: {
+		color: 'white',
+	  }
+    },
+  },
   zIndex: {
 	drawer: 1400,
   },
