@@ -12,7 +12,7 @@ import {
 	Typography,
 	Button,
 	IconButton,
-	Drawer,
+	SwipeableDrawer,
 	Divider,
 	List,
 	ListItem,
@@ -87,7 +87,7 @@ const NavBar = (props) => {
 	const location = useLocation();
 
 	const toggleDrawer = open => event => {
-		if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift'))
+		if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift'))
 			return;
 		setState(open);
 	};
@@ -176,9 +176,9 @@ const NavBar = (props) => {
 
 		{ getCurrentProfile() ? <FloatingButton /> : null }
 
-		<Drawer open={state} onClose={toggleDrawer(false)} className={classes.drawer}>
+		<SwipeableDrawer swipeAreaWidth={50} open={state} onOpen={toggleDrawer(true)} onClose={toggleDrawer(false)} className={classes.drawer}>
 			<Menu />
-		</Drawer>
+		</SwipeableDrawer>
 	</>
 }
 
