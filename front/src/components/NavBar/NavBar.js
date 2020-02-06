@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link, NavLink, useHistory, useLocation } from "react-router-dom";
 
-import { withBreakpoints } from 'react-breakpoints';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -128,8 +129,8 @@ const NavBar = (props) => {
 
 	const handleLogin = () =>	window.location.href = process.env.REACT_APP_API_URL + '/auth/steam';
 
-    const { breakpoints, currentBreakpoint } = props;
-	const desktop = breakpoints[currentBreakpoint] >= breakpoints.desktop;
+    const theme = useTheme();
+    const desktop = useMediaQuery(theme.breakpoints.up('sm'));
 
 	return <>
 		<AppBar position="fixed" className={classes.appBar}>
@@ -175,4 +176,4 @@ const NavBar = (props) => {
 	</>
 }
 
-export default withBreakpoints(NavBar);
+export default NavBar;

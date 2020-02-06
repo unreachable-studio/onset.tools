@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { withBreakpoints } from 'react-breakpoints';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -40,8 +41,8 @@ const useStyles = makeStyles(theme => ({
 const PackageItem = ({ package: { id, name, date, author, views, downloads, short_description }, ...props }) => {
   const classes = useStyles();
 
-  const { breakpoints, currentBreakpoint } = props;
-  const mobile = breakpoints[currentBreakpoint] <= breakpoints.mobile;
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
 	  <Grid item style={mobile ? {width: '100%'} : null}>
@@ -76,4 +77,4 @@ const PackageItem = ({ package: { id, name, date, author, views, downloads, shor
   );
 }
 
-export default withBreakpoints(PackageItem);
+export default PackageItem;

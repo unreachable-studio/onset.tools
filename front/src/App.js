@@ -6,7 +6,7 @@ import { faCube, faImage, faDownload, faEye, faSignOutAlt } from '@fortawesome/f
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import ReactBreakpoints from 'react-breakpoints';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import NavBar from './components/NavBar/NavBar';
 import Router from './routes/Routes';
@@ -23,13 +23,24 @@ const breakpoints = {
   desktopWide: 1920,
 }
 
+const theme = createMuiTheme({
+  palette: {
+	type: 'light',
+    primary: {
+	  main: '#ff9800',
+	  light: '#ff9800',
+	  dark: '#ff9800',
+	},
+  },
+});
+
 const App = () => {
   return (
-	<ReactBreakpoints breakpoints={breakpoints}>
+	<ThemeProvider theme={theme}>
 	  <NavBar />
 	  <section name="offset" style={{paddingTop: '80px'}}></section>
 	  <Router />
-	</ReactBreakpoints>
+	</ThemeProvider>
   )
 }
 
