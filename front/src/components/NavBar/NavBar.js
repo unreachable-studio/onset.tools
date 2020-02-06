@@ -24,6 +24,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import FloatingButton from './FloatingButton.js';
+
 import { getCurrentProfile } from '../../Helpers.js';
 
 const useStyles = makeStyles({
@@ -74,7 +76,6 @@ const useStyles = makeStyles({
 			background: "#f4433688",
 		},
 	},
-
 });
 
 const NavBar = (props) => {
@@ -169,6 +170,8 @@ const NavBar = (props) => {
 				)}
 			</Toolbar>
 		</AppBar>
+
+		<FloatingButton />
 
 		<Drawer open={state} onClose={toggleDrawer(false)}>
 			<Menu />
