@@ -28,10 +28,13 @@ import FloatingButton from './FloatingButton.js';
 
 import { getCurrentProfile } from '../../Helpers.js';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     appBar: {
-      zIndex: 1400,
+      zIndex: theme.zIndex.drawer,
 	  color: 'white',
+    },
+    drawer: {
+      zIndex: theme.zIndex.drawer,
     },
 	list: {
 		width: 270,
@@ -76,7 +79,7 @@ const useStyles = makeStyles({
 			background: "#f4433688",
 		},
 	},
-});
+}));
 
 const NavBar = (props) => {
 	const classes = useStyles();
@@ -173,7 +176,7 @@ const NavBar = (props) => {
 
 		<FloatingButton />
 
-		<Drawer open={state} onClose={toggleDrawer(false)}>
+		<Drawer open={state} onClose={toggleDrawer(false)} className={classes.drawer}>
 			<Menu />
 		</Drawer>
 	</>

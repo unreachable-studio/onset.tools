@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import { makeStyles } from '@material-ui/core/styles';
 
+import { Backdrop } from '@material-ui/core/';
+
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
@@ -9,6 +11,10 @@ import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const useStyles = makeStyles(theme => ({
+  backdrop: {
+	zIndex: theme.zIndex.drawer - 1000,
+	color: '#fff',
+  },
   speedDial: {
 	position: 'fixed',
 	bottom: theme.spacing(2),
@@ -29,24 +35,28 @@ const FloatingButton = () => {
   const handleOpen  = () => setOpen(true);
 
   return (
-	<SpeedDial
-	  ariaLabel="Publish a package/asset"
-	  className={classes.speedDial}
-	  icon={<SpeedDialIcon />}
-	  onClose={handleClose}
-	  onOpen={handleOpen}
-	  open={open}
-	  direction="up"
-	>
-	  {actions.map(action => (
-		<SpeedDialAction
-		  key={action.name}
-		  icon={action.icon}
-		  tooltipTitle={action.name}
-		  onClick={handleClose}
-		/>
-	  ))}
-	</SpeedDial>
+	<>
+	  <Backdrop open={open} className={classes.backdrop}/>
+	  <SpeedDial
+		ariaLabel="Publish a package/asset"
+		className={classes.speedDial}
+		icon={<SpeedDialIcon />}
+		onClose={handleClose}
+		onOpen={handleOpen}
+		open={open}
+		direction="up"
+	  >
+		{actions.map(action => (
+		  <SpeedDialAction
+			key={action.name}
+			icon={action.icon}
+			tooltipTitle={action.name}
+			tooltipOpen
+			onClick={handleClose}
+		  />
+		))}
+	  </SpeedDial>
+	</>
   );
 
 };

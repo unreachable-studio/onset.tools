@@ -23,6 +23,9 @@ const theme = createMuiTheme({
 	  main: '#ff9800',
 	},
   },
+  zIndex: {
+	drawer: 1400,
+  },
 });
 
 const App = () => {
