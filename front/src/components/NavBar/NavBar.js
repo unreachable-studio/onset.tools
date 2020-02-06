@@ -174,7 +174,7 @@ const NavBar = (props) => {
 			</Toolbar>
 		</AppBar>
 
-		<FloatingButton />
+		{ getCurrentProfile() ? <FloatingButton /> : null }
 
 		<Drawer open={state} onClose={toggleDrawer(false)} className={classes.drawer}>
 			<Menu />
