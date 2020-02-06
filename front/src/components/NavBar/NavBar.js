@@ -29,6 +29,7 @@ import { getCurrentProfile } from '../../Helpers.js';
 const useStyles = makeStyles({
     appBar: {
       zIndex: 1400,
+	  color: 'white',
     },
 	list: {
 		width: 270,
@@ -90,14 +91,14 @@ const NavBar = (props) => {
 	const Menu = () => (
 		<div className={classes.list} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
 			<List>
-				<NavLink to="/packages" className={classes.link} activeClassName="activeLink">
+				<NavLink to="/packages" className={classes.link} activeClassName="activeLink" isActive={(match, loc) => loc.pathname.startsWith('/package')}>
 					<ListItem button key={0}>
 						<ListItemIcon className="iconNavbar"><FontAwesomeIcon icon="cube" size="2x"/></ListItemIcon>
 						<ListItemText primary="Packages" />
 					</ListItem>
 				</NavLink>
 
-				<NavLink to="/assets" className={classes.link} activeClassName="activeLink">
+				<NavLink to="/assets" className={classes.link} activeClassName="activeLink" isActive={(match, loc) => loc.pathname.startsWith('/asset')}>
 					<ListItem button key={1}>
 						<ListItemIcon className="iconNavbar"><FontAwesomeIcon icon="image" size="2x"/></ListItemIcon>
 						<ListItemText primary="Assets" />
