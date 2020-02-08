@@ -36,13 +36,13 @@ const theme = createMuiTheme({
 });
 
 const App = () => {
-  return (
-	<ThemeProvider theme={theme}>
-	  <NavBar />
-	  <section name="offset" style={{paddingTop: '80px'}}></section>
-	  <Router />
-	</ThemeProvider>
-  )
+	return (
+		<ThemeProvider theme={theme}>
+			<NavBar />
+			<section name="offset" style={{paddingTop: '80px'}}></section>
+			<Router />
+		</ThemeProvider>
+	)
 }
 
 export default App;
