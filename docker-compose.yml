@@ -9,7 +9,7 @@ services:
       - './api/package.json:/usr/src/package.json'
       - '/usr/src/node_modules'
     ports:
-      - '4000:4000'
+      - '${API_PORT-4000}:4000'
     networks:
       - default
     labels:
@@ -23,36 +23,37 @@ services:
       - './front/package.json:/usr/src/package.json'
       - '/usr/src/node_modules'
     ports:
-      - '3000:3000'
+      - '${FRONT_PORT-3000}:3000'
+      - '${STORYBOOK_PORT-9009}:9009'
     networks:
       - default
     labels:
       traefik.enable: false
 
-  db:
-    image: mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: onset
-    volumes:
-      - ./db/data:/data/db
-    networks:
-      - default
-    labels:
-      traefik.enable: false
+# db:
+#   image: mongo
+#   environment:
+#     MONGO_INITDB_ROOT_USERNAME: root
+#     MONGO_INITDB_ROOT_PASSWORD: onset
+#   volumes:
+#     - ./db/data:/data/db
+#   networks:
+#     - default
+#   labels:
+#     traefik.enable: false
 
-  mongo-express:
-    image: mongo-express
-    ports:
-      - '8082:8081'
-    networks:
-      - default
-    environment:
-      ME_CONFIG_MONGODB_SERVER: db
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: onset
-    labels:
-      traefik.enable: false
+# mongo-express:
+#   image: mongo-express
+#   ports:
+#     - '${DBGUI_PORT-8081}:8081'
+#   networks:
+#     - default
+#   environment:
+#     ME_CONFIG_MONGODB_SERVER: db
+#     ME_CONFIG_MONGODB_ADMINUSERNAME: root
+#     ME_CONFIG_MONGODB_ADMINPASSWORD: onset
+#   labels:
+#     traefik.enable: false
 
 networks:
   default:

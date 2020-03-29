@@ -5,9 +5,14 @@ body {
     width: 100%;
     overflow-x: hidden;
     font-family: 'Roboto', sans-serif;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 
-h1 {
-    text-align: center;
-    font-size: 2rem;
+.activeLink {
+    .iconNavbar {
+        color: #ff9800;
+    }
 }
